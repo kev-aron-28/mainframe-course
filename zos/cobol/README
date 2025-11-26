@@ -1,0 +1,179 @@
+- COBOL PROGRAMMING LANGUAGE                                            00010000
+1-6 LINE NUMBERS(HISTORICALLY)                                          00020000
+7 LINE INDICATOR                                                        00030000
+8-72 COBOL CODE AREA                                                    00040000
+73-80 SYSTEM SEQUENCE                                                   00050000
+                                                                        00060000
+MARGIN A (8-11): DIVISION SECTIONS AND PARAGRAPHS                       00070000
+MARGIN B (12-72): COBOL INSTRUCTIONS                                    00080000
+                                                                        00090000
+IT IS A HIERARCHICAL LENGUAGE                                           00100000
+DIVISIONS -> SECTIONS -> PARAGRAPHS -> INSTRUCTIONS                     00110000
+# DIVISIONS                                                             00120000
+-> IDENTIFICATION DIVISION                                              00130000
+-> ENVIROMENT DIVISION                                                  00140000
+-> DATA DIVISION                                                        00150000
+-> PRO7CEDURE DIVISION                                                  00160005
+                                                                        00170000
+# PARAGRAPHS                                                            00180000
+REPRESENT A SPECIFIC ACTION THAT CONTAINS A SEQUENCE OF INSTRUCTIONS    00190000
+MAY ALSO CALL OTHER PARAGRAPHS                                          00200000
+# INSTRUCTIONS                                                          00210000
+LINE OR SET OF LINES OF CODES THAT PERFORMS A SPECIFIC ACTION           00220000
+                                                                        00230000
+# IDENTIFICATION DIVISION                                               00240000
+SERVES TO IDENTIFY ANY DOCUMENT THE PROGRAM                             00250000
+       - WHAT PROGRAM IS USED FOR                                       00260000
+       - WHO WROTE IT                                                   00270000
+       - CONTEXT                                                        00280000
+IDENTIFICATION DIVISION.                                                00290000
+PROGRAM-ID. HELLO.                                                      00300000
+AUTHOR. KEVIN.                                                          00310000
+DATE-WRITTEN. 01/01/2000                                                00320000
+DATE-COMPILED. 01/01/2000                                               00330000
+INSTALLATION. COBOL TRANING                                             00340000
+SECURITY. PUBLIC.                                                       00350000
+                                                                        00360000
+# COMMENTS                                                              00370000
+LINES THAT ARE IGNORED DURING PROGRAM EXECUTION                         00380000
+# DEBUGIN                                                               00390000
+  0 - OK                                                                00400000
+  4 - WARNING BUT SUCCESS                                               00410000
+  8 - ERRORS WERE DETECTED AND COMPILATION FAILD                        00420000
+  12 - PRESENCE OF SEVERE ERRORS AND THE COMPILATION FAILED             00430000
+                                                                        00440000
+# VARIABLES                                                             00450000
+A VARIABLE IS AN ELEMENT DERCLARED IN A PROGRAM TO STORE A VALUE        00460000
+IT CAN BE EITHER A CHARACTER STRING OR A NUMBER                         00470000
+TWO SECTION                                                             00480000
+       - FILE SECTION                                                   00490000
+       - WORKING STORAGE SECTION                                        00500000
+EVERY VARIABLE DECLARATION STARTS WITH A LEVEL NUMBER, THIS ORGANIZES   00510000
+VARIABLES HIERARCHICALLY                                                00520000
+LEVEL 01 IS THE HIGHEST                                                 00530000
+01 - 49                                                                 00540000
+IT MUST START WITH A LETTER                                             00550000
+IT MUST NOT EXCEED 30 CHARS                                             00560000
+ONLY LETTERS,DIGITS,HYPHENS ALLOWED                                     00570000
+NOT RESERVED WORDS                                                      00580000
+# PICTURE CLAUSE                                                        00590000
+  PIC X IS USED FOR ALPHANUMERIC VALUES                                 00600000
+  PIC 9 IS USED FOR NUMERIC VALUES                                      00610000
+# GROUP OF VARIABLES                                                    00620000
+                                                                        00630000
+# INSTRUCTIONS                                                          00640001
+ - MOVE: IS USED TO ASSIGN A VALUE TO A VARIABLE                        00650001
+                                                                        00660001
+# INPUT DATA TO PROGRAM                                                 00670002
+//SYSIN DD *                                                            00680002
+DATA TO BE SENT..                                                       00690002
+/*                                                                      00700002
+ACCEPT STATEMENT RETREIVES THIS DATA FROM SYSIN                         00710003
+      ACCEPT VARIABLE                                                   00720003
+                                                                        00730003
+# FILLER                                                                00740004
+IS USED IN DATA STRUCTURE TO RESERVE MEMORY SPACE WITHOUT               00750004
+ASSIGNING A NAME TO THE FIELD                                           00760004
+# ARITHMETIC OPERATIONS                                                 00770004
+  - ADD OR ADD 1 TO 2 GIVIN RESULT                                      00780005
+  - SUBTRACT                                                            00790005
+  - MULTPLY                                                             00800005
+  - DIVIDE AND REMAINDER                                                00810005
+ # COMPUTE INSTRUCTION                                                  00820005
+   COMPUTE VAR = (3 + X) * Y                                            00830005
+# EVALUATE                                                              00840006
+IS LIKE A SWITCH                                                        00850006
+EVALUATE TRUE                                                           00860006
+ WHEN AGE < 2                                                           00870006
+       DISPLAY                                                          00880006
+ WHEN AGE > 2 AND AGE < 11                                              00890006
+       DISPLAY                                                          00900006
+ WHEN AGE                                                               00910006
+       DISPLAY                                                          00920006
+ WHEN OTHER                                                             00930006
+ END-EVALUATE                                                           00940006
+ TO EVALUATE A RANGE OF VALUES WE USE 0 THRU 2                          00950006
+ # LOOPS                                                                00960007
+ WE USE THE PERFORM STATEMENT                                           00970007
+ THERE ARE 3 TYPES OF LOOPS                                             00980007
+ - FIXED NUMBER OF ITERATIONS                                           00990007
+ - CONDITIONAL                                                          01000007
+ - CONTROL VARIABLE                                                     01010007
+                                                                        01020008
+# AL TYPES IN PICTURE CLAUSE                                            01030008
+  - ALPHANUMERIC X ANYCHARACTER, PIC X                                  01040008
+  - NUMERIC      9    DIGIT    , PIC 9                                  01050008
+  - D.P          V    DECIMAL  , PIC 9(5)V99                            01060008
+  - SIGN         S    SIGN     , PIC S9(3)                              01070008
+  - INSERT COMMA PIC ZZZ,ZZZ                                            01080008
+  - INSERT DECIMAL POINT ZZ,ZZZ.99                                      01090008
+  - MINUS SIGN IF NEGATIVE, PIC ZZZ,ZZZ-                                01100008
+                                                                        01110009
+ # FUNCTIONS                                                            01120009
+   THERE ARE OVER 42 BUILTIN FUNCTIONS IN COBOL                         01130009
+   THEY ARE ALSO CALLED INTRINSIC FUNCTIONS                             01140009
+   THESE WERE ADDED IN 1989 TO THE COBOL-85 STANDARD                    01150009
+     - MATHEMATICAL: SUM, SQRT                                          01160009
+     - STATISTICAL: MEAN, MAX                                           01170009
+     - CHARACTER: REVERSE, LENGTH                                       01180009
+     - DATE: CURRENT-DATE                                               01190009
+     - FINANCIAL: PRESENT-VALUE                                         01200009
+     - TRIGONOMETRIC: SIN,COS                                           01210009
+  # SINTAX TO USE A FUNCTION IS:                                        01220009
+   FUNCTION FUNC-NAME(ARGS)                                             01230009
+   FUNCTION SUM(23,12) OR FUNCTION SUM(12 2 4 5)                        01240009
+   THEY CAN BE USED IN COMPUTE STATEMENT                                01250009
+ # MATHEMATICAL                                                         01260009
+       SUM                                                              01270009
+       SQRT                                                             01280009
+       REM                                                              01290009
+       MOD                                                              01300009
+       FACTORIAL                                                        01310009
+       LOG                                                              01320009
+       LOG10                                                            01330009
+       INTEGER                                                          01340009
+       INTEGER-PART                                                     01350009
+       NUMVAL                                                           01360009
+       NUMVAL0C                                                         01370009
+       RANDOM                                                           01380009
+# STATISTICAL                                                           01390009
+       MEAN: AVERAGE OF THE UMBERS                                      01400009
+       MEDIAN: FINDS THE NUMBER THAT LIES IN THE MIDDLE OF THE VLAUES   01410009
+       STANDARD-DEVIATION: FINDS HOW MUCH VARY FROM THE MEAN            01420009
+       VARIANCE: FINDS HOW MUCH THE NUMBERS VARY FROM THE MEAN          01430009
+       RANGE: DIFF OF MAX AND MIN                                       01440009
+       MID-RANGE: MEAN OF THE MAX AND MIN                               01450009
+       MAX                                                              01460009
+       MIN                                                              01470009
+       ORD-MAX: POSITION OF THE MAX NUMB                                01480009
+       ORD-MIN: POSITION OF THE MIN NUM                                 01490009
+# CHARACTER FUNCTION                                                    01500009
+       LENGTH                                                           01510009
+       REVERSE                                                          01520009
+       UPPER-CASE                                                       01530009
+       LOWER-CASE                                                       01540009
+       ORD GIVES CHAR AN RETURNS ASCCII                                 01550009
+       CHAR GIVES ASCCI AN RETURNS CHAR                                 01560009
+# FINANTIAL FUNCTIONS                                                   01570009
+       ANNUITY(INTEREST-RATE NUMBER-OF-PERIODS)                         01580009
+       USED TO FIND THE INSTALLMENT VALUE FOR THE LOAN                  01590009
+                                                                        01600009
+       PRESENT-VALUE(INTEREST-RATE PAYMENT-VALUE1 PAYMENT-VALUE2...)    01610009
+       USED TO FIND THE PRESENT VALUE FOR THE SERIES OF FUTURE PAYMENTS 01620009
+# TRIGONOMETRIC FUNCTIONS                                               01630009
+       SIN                                                              01640009
+       COS                                                              01650009
+       TAN '                                                            01660009
+       ASIN                                                             01670009
+       ACOS                                                             01680009
+       ATAN                                                             01690009
+# LOOPS                                                                 01700010
+  PERFORM PROC_NAME UNTIL CONDITION                                     01710010
+  END-PERFORM                                                           01720010
+  AFTER ALL THE STATEMENTS ARE EXEC, THE COND IS CHECK AGAIN            01730010
+  IF THE COND IS STILL FALSE, THEN IT GOES AGAIN                        01740010
+                                                                        01750010
+  PERFORM DISPLAY-PAR                                                   01760010
+       WITH TEST AFTER|BEFORE                                           01770010
+       UNTIL I > 5                                                      01780010
+  PERFORM COMPUND-INT-CALC VARYING YEARS FROM 1 BY 1 UNTIL YEARS > 4    01790010

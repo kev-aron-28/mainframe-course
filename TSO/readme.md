@@ -37,6 +37,7 @@ Background mode: TSO commands are run independent of the user
 2. ISPF option 6
 3. ISPF command line
 
+
 listcat level(ibmuser)
 listcat entries('')
 listcat creation(10)
