@@ -207,3 +207,165 @@ PIC S9(3)V99
 | .      | Decimal point                 |
 | ,      | Thousands separator           |
 | -      | Sign                          |
+
+# Exercices
+
+A temperature like -12.5
+1. temperature pic S9(2)V9
+2. 
+
+# COBOL Editing Symbols
+9 – Digit
+Represents a numeric digit.
+Always displays a digit; if the number has fewer digits than 9s, it will show 0.
+
+01 WS-NUM PIC 9999.
+Value = 45 → Displays as 0045
+Value = 123 → Displays as 0123
+
+Z – Leading zero suppression
+Like 9, but does not show leading zeros.
+First non-zero digit and everything after it are displayed.
+01 WS-NUM PIC ZZZ9.
+Value = 45 → Displays as 45 (2 spaces before 45)
+Value = 7 → Displays as 7
+
+Use Z for reports where you don’t want ugly leading zeros.
+
+$ – Currency symbol
+Inserts a currency symbol literally in the display.
+Example:
+01 WS-AMT PIC $9,999.99.
+
+Value = 1234.56 → Displays as $1,234.56
+Works with any number, just shows the $ in the display.
+
+* – Replace leading zeros with asterisks
+Instead of showing zeros, leading zeros become *.
+Example:
+01 WS-NUM PIC ****9.
+
+Value = 45 → Displays as ***45
+Value = 7 → Displays as ****7
+Often used in banking reports to hide small numbers or blanks visually.
+
+. – Decimal point
+The period is displayed literally in the output.
+
+Example:
+01 WS-NUM PIC 999.99.
+Value = 12345 → Displays as 123.45?
+
+Important: if you want implied decimal, use V instead of . in PIC.
+V = decimal not stored, just position
+. = decimal actually stored/displayed
+
+, – Thousands separator
+Displays a comma for readability.
+Example:
+01 WS-NUM PIC 9,999.
+
+Value = 1234 → Displays as 1,234
+Value = 56 → Displays as 56 (space for missing digits)
+
+
+# PROCEDURE DIVISION
+This is where COBOL actually runs code. The DATA DIVISION defines variables, but the PROCEDURE DIVISION does the actions.
+
+- Must start with PROCEDURE DIVISION.
+- Can contain sections and paragraphs, though sections are optional.
+- Statements are executed top-to-bottom.
+
+``` cobol
+PROCEDURE DIVISION.
+
+MAIN-LOGIC.
+    PERFORM INPUT-PROCESSING
+    PERFORM CALCULATION
+    PERFORM OUTPUT-PROCESSING
+    STOP RUN.
+
+INPUT-PROCESSING.
+    DISPLAY "Enter a number: "
+    ACCEPT WS-NUMBER
+    .
+CALCULATION.
+    ADD 5 TO WS-NUMBER
+    .
+OUTPUT-PROCESSING.
+    DISPLAY "Result: " WS-NUMBER
+    .
+```
+
+MAIN-LOGIC, INPUT-PROCESSING … are paragraphs.
+Paragraphs are executed with PERFORM paragraph-name.
+
+
+## Move statement
+``` cobol
+MOVE WS-NAME TO WS-MESSAGE
+MOVE "HELLO" TO WS-MESSAGE
+```
+
+## compute statements
+```
+COMPUTE WS-TOTAL = WS-NUM1 + WS-NUM2 * 2
+```
+
+## add / substract / multiply / divide
+```
+ADD WS-A TO WS-B GIVING WS-C
+SUBTRACT 5 FROM WS-C
+MULTIPLY WS-D BY 2 GIVING WS-E
+DIVIDE WS-F BY WS-G GIVING WS-H REMAINDER WS-R
+```
+
+## if statement
+```
+IF WS-NUMBER > 10
+    DISPLAY "Greater than 10"
+ELSE
+    DISPLAY "10 or less"
+END-IF.
+```
+Supports nested IFs and logical operators:
+AND, OR, NOT
+Can also use IF WS-FLAG = 'Y' ...
+
+## Evaluate (switch / case equivalent)
+
+```
+EVALUATE WS-CHOICE
+    WHEN 1
+        DISPLAY "Option 1"
+    WHEN 2
+        DISPLAY "Option 2"
+    WHEN OTHER
+        DISPLAY "Unknown option"
+END-EVALUATE.
+```
+
+## Perform
+### Simple perform
+PERFORM PRINT-MESSAGE
+
+### perform thru
+PERFORM INPUT-PROCESSING THRU OUTPUT-PROCESSING
+
+### perform until (loop)
+```
+PERFORM UNTIL WS-COUNT > 10
+    DISPLAY WS-COUNT
+    ADD 1 TO WS-COUNT
+END-PERFORM.
+```
+
+### perform varying (for loops)
+```
+PERFORM VARYING I FROM 1 BY 1 UNTIL I > 5
+    DISPLAY "I = " I
+END-PERFORM.
+```
+
+### STOP RUN
+ Stops the program
