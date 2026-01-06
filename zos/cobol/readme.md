@@ -268,6 +268,43 @@ Example:
 Value = 1234 → Displays as 1,234
 Value = 56 → Displays as 56 (space for missing digits)
 
+# What nested variables really mean
+01 PERSON.
+   05 NAME.
+      10 FIRST-NAME PIC X(10).
+      10 LAST-NAME  PIC X(10).
+   05 AGE PIC 9(3).
+This is ONE block of memory, broken into named pieces.
+
+PERSON
+┌─────────────────────────────┐
+│ NAME                        │
+│ ┌──────────┬──────────┐     │
+│ │ FIRST    │ LAST     │     │
+│ └──────────┴──────────┘     │
+│ AGE                         │
+└─────────────────────────────┘
+
+What is a level 88 in COBOL?
+A level 88 is a named condition, not a variable.
+
+01 WS-STATUS      PIC X.
+   88 STATUS-ON   VALUE 'Y'.
+   88 STATUS-OFF  VALUE 'N'.
+
+Important rules
+- Level 88 never has a PIC
+- It belongs to the variable above it
+- It is true when the parent variable has that value
+
+SET STATUS-ON TO TRUE. = MOVE 'Y' TO WS-STATUS.
+
+IF STATUS-ON
+    DISPLAY "Status is ON"
+END-IF
+IF WS-STATUS = 'Y'
+
+
 
 # PROCEDURE DIVISION
 This is where COBOL actually runs code. The DATA DIVISION defines variables, but the PROCEDURE DIVISION does the actions.
@@ -367,5 +404,11 @@ PERFORM VARYING I FROM 1 BY 1 UNTIL I > 5
 END-PERFORM.
 ```
 
+### perform times
+PERFORM 10 TIMES
+
+END-PERFORM
+
 ### STOP RUN
  Stops the program
+

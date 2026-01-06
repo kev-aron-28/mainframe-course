@@ -27,4 +27,4 @@
             DISPLAY 'I = 'I                                             00119200
            END-PERFORM                                                  00119300
                                                                         00119400
-           STOP RUN                                                     00119500
+           STOP RUN.                                                    00119500
