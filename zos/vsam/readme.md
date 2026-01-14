@@ -39,11 +39,13 @@ DSORG=DA
 - DSORG=PO
 
 ## VSAM
+VSAM is IBM’s smart file system for mainframes that lets programs find data quickly without reading the whole file.
+
 - Virtual Storage Access Method
 - VSAM is an IBM-invented access method that allows us to access and organize the records in the disk dataset. 
 - VSAM works with the data that stores only on Direct Access Storage Devices (DASDs)
 - VSAM record storage format is unique and not understandable by other access methods.
-- IDCAMS utility used to define the VSAM datasets. We will discuss VSAM more detail in further chapters. 
+- IDCAMS utility used to define the VSAM datasets.
 - It was developed in 1970 
 - Virtual specifies that it was developed when the initial IBM virtual storage OS/VS1 and OS/VS2 was introduced
 
@@ -106,3 +108,31 @@ and also provides the below access options
 - MOre DASD space
 - Only works with data stored on a disk and cant handle data in tapes
 - Only provides security at dataset level if nay changes are required at security level the user should handle that manually
+- Have no or little support for security and integrity issues
+- Have no or little support ofr recovery and concurrency issues
+- Accessing speed is slow
+- Have no tru data dictionary concept
+
+## Types of VSAM (easy view)
+### KSDS – Keyed Sequential Data Set (MOST COMMON)
+
+Find a record using a key
+
+## ESDS - Entry sequential data set
+Records in order of arrival
+
+- NO key,
+- Recrods have a relative address
+- Can only append new records
+
+
+# Basic concepts and terminology
+
+
+## Cluster
+A VSAM cluster is a logical definition for a VSAM dataset and has the below one or two componets
+- the data components contains the data records
+- the index component of the key-sequenced cluster consists of the index records
+
+## Logical record
+is a logical representation of a physical record used to store the data in VSAM or retrieve it from VSAM
