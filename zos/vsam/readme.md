@@ -130,9 +130,40 @@ Records in order of arrival
 
 
 ## Cluster
+A cluster is the full VSAM dataset definition
 A VSAM cluster is a logical definition for a VSAM dataset and has the below one or two componets
 - the data components contains the data records
 - the index component of the key-sequenced cluster consists of the index records
 
 ## Logical record
 is a logical representation of a physical record used to store the data in VSAM or retrieve it from VSAM
+- They can be of fixed length or variable length and VSAM supports both
+
+## Control interval (CI)
+Smallest unit VSAM reads/writes
+VSAM always moves data by CI, not by record.
+- I s the fundamental block of every VSAM dataset
+- set of phyisical blocks that are read or written during the I/O operation
+- CI can be from 512 bytes to 32KB
+- FOr better benefits use 3390 tracks for the size of physical record
+- Smal CI is suitable for random access because avoids bringing unnecesary logical records
+- Large CI is suitable for sequential access because large CI gets more records in a single record reducing the number of reads
+
+The CI Components:
+- No. of logical records 
+- Free space for records insertion
+- Control information:
+   - Control interval Definition Field (CIDF)
+   - REcord definition fields (RDFs)
+
+## Control Area (CA)
+Group of Control Intervals
+- A CA contains multiple CIs
+- Used for allocation and growth
+
+## Spanned records
+A spanned record is a record that is too large to fit inside a single Control Interval (CI),
+so VSAM splits it across multiple CIs.
+
+## Sphere
+A VSAM sphere is everything that belongs together as one logical VSAM object.

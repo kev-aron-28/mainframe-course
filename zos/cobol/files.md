@@ -310,3 +310,114 @@ Error handling:
 - NOT INVALID KEY - This phrase specifies the steps to be taken if the read is successful and the key is valid. This is applicable to indexed or relative files.
 - AT END - This phrase specifies the action to take if you're at the end of a file or no more records are left. It applies to sequential files only.
 - NOT AT END - This phrase specifies the action to perform when the read is successful and it's not the end of the file. It applies to sequential files only.
+
+## READ statement
+READ statement is used to retrieve a record from the file. At a time, only one record is retrieved from the file.
+
+``` cobol
+READ logical-file-name  
+    [INTO ws-record-name]
+        [AT END statements-set1]
+    [NOT AT END statements-set2]
+[END-READ].
+
+READ logical-file-name  
+    [INTO ws-record-name]
+	[KEY IS key-variable]
+        [INVALID KEY statements-set3]
+    [NOT INVALID KEY statements-set4]
+[END-READ].
+```
+
+## WRITE statement
+- The file should open in OUTPUT (for sequential, indexed, and relative files when the files are empty), I-O(for indexed and relative files when the files are not empty), or EXTEND (for sequential files when the file is not empty) mode to write a record.
+- It is used for all types of (sequential, indexed, and relative) files.
+
+
+``` cobol
+WRITE record-name 
+     [FROM ws-record-name]
+	 [BEFORE ADVANCING ws-variable|num LINES]
+	 [AFTER  ADVANCING ws-variable|num LINES]
+[END-WRITE].
+
+WRITE record-name 
+     [FROM ws-record-name]
+         [INVALID KEY statements-set1]
+     [NOT INVALID KEY statements-set2]
+[END-WRITE].
+```
+
+## DELETE statement
+DELETE statement removes a record from an indexed or relative file.
+After it is successfully executed, the record is removed from the file and can no longer be available
+
+- DELETE does not apply to sequential files, as record deletion is impossible.
+- The file must open in I-O mode to execute the DELETE statement.
+- After the successful deletion, the space occupied by the record is marked as available but not immediately used.
+- The record that will be deleted should read first in SEQUENTIAL accessing mode.
+- We should provide RECORD KEY (for indexed files) or RELATIVE KEY (for relative files) for the DELETE statement for DYNAMIC access mode.
+
+``` cobol
+DELETE logical-file-name 
+           [INVALID KEY statements-set1]
+       [NOT INVALID KEY statements-set2]
+[END-DELETE].
+```
+
+## REWRITE statement
+REWRITE statement is used to replace the content of a previously read record with new data. At a time, only one record is replaced in the file.
+- The file should open in I-O mode to perform the REWRITE statement.
+- The REWRITE statement is used for all types of (sequential, indexed and relative) files.
+
+
+```
+REWRITE record-name 
+       [FROM ws-record-name]
+           [INVALID KEY statements-set1]
+       [NOT INVALID KEY statements-set2]
+[END-REWRITE].
+```
+
+
+## START statement
+START is used to set the file pointer to read the record.
+START won't retrieve any record and only sets the pointer before beginning a sequence of READ operations
+
+- The file should open in INPUT or I-O mode to perform the START operation.
+- It is used for indexed and relative files.
+- It is used when the ACCESS MODE is DYNAMIC.
+
+``` cobol
+START logical-file-name
+    [KEY IS {EQUAL TO | GREATER THAN | LESS THAN | NOT ...} ws-key-value]
+        [INVALID KEY statements-set1]
+    [NOT INVALID KEY statements-set2]
+[END-START].
+```
+
+## NEXT RECORD
+READ NEXT statement is used to read the next record from the current reading position of the file. At a time, only one record is retrieved from the file.
+
+The file should open in INPUT or I-O mode to perform the READ NEXT statement.
+The READ NEXT statement is used for indexed or relative files.
+A READ NEXT statement is used when the ACCESS MODE is DYNAMIC.
+
+```
+READ logical-file-name
+    [NEXT RECORD]  
+    [INTO ws-record-name]
+        [AT END statements-set1]
+    [NOT AT END statements-set2]
+[END-READ].
+```
+
+## CLOSE statement
+CLOSE statement is used to terminate the file processing and release the resources used by the file.
+Once the file's CLOSE statement is executed successfully, the record area associated with it is no longer available.
+This statement specifies that the program has finished using the file.
+
+``` cobol
+CLOSE file-name [WITH LOCK].
+```
+WITH LOCK - Specifies that the program exclusively locks the file and can't be used until the current run unit execution is completed.
