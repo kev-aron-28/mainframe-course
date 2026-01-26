@@ -34,6 +34,35 @@ SORT statement is a powerful statement used for sorting files internally within 
 - Transfers the sorted records from work file to output file.
 - Closes the input, output files and releases (deletes) the work-file.
 
+### Release
+A RELEASE statement is used to send records from the input procedure to a sort work file in the sorting process.
+It is only used inside the INPUT PROCEDURE of a SORT operation.
+Atleast one RELEASE statement should be coded in the input procedure.
+
+YOu must open the file in INPUT mode by yourselve and read each record the move it to the work record
+and then release
+
+``` cobol
+SORT WORKFILE
+     ON ASCENDING KEY WORK-EMP-NUM 
+     INPUT PROCEDURE IS 1000-FILTER-RECORDS
+     GIVING EMPFILEO.
+```
+
+### Return
+RETURN statement transfers records from the final phase of a sorting or merging operation to an OUTPUT PROCEDURE.
+It is used only within the OUTPUT PROCEDURE associated with a SORT or MERGE statement.
+
+- You receive sorted records
+- You use RETURN to fetch them
+
+``` cobol
+RETURN work-file-1 INTO record-1
+    AT END statements-block-1
+    NOT AT END statements-block-2
+END-RETURN
+```
+
 
 # MERGE statement
 MERGE statement is used to combine two or more sequentially ordered files into a single, merged, and sequentially ordered output file.
