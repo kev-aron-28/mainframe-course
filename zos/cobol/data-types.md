@@ -96,7 +96,7 @@ PICTURE symbol is the letter used to specify the type of the variable during its
 ## Data types
 - Alphabetic (A)
 - numeric (9)
-- Alphanumeric (X
+- Alphanumeric (X)
 - Assumed decimal point (V) Ex. Pic 999V99
 - Operational sign (S) Ex. PIC S999, PIC S999 SIGN IS LEADING SEPERATE CHARACTER, Or PIC S999 SIGN IS TRAILING SEPERATE CHARACTER
 
