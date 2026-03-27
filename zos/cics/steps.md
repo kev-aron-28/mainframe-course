@@ -9,7 +9,6 @@ END-CICS
 ```
 
 2. Compile the COBOL + CICS program
-
     3. Define the transaction entry (PCT) in CICS:
         - ceda def tran(mdfa)
         - you will be asked the transaction id (4 chars), the group, and the program
@@ -21,4 +20,4 @@ END-CICS
         - cemt set prog(sendtxtp) newc and in the results must say NORMAL
     6. Now in CICS region you enter the transction
 
-ce
+    
