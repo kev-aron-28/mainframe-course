@@ -115,3 +115,43 @@ The level 88 is used to define condition names, which act as a meaningful names 
 - Numeric
 - SIgn
 - Decimal point
+
+# What is PIC 9.99 indicates?
+The v means an implied or assumed decimal point. 
+
+# What is the difference between PIC 9.99 and PIC 9V99?
+
+- 9.99 is  an explicit decimal point mainly used for display, calculations and
+may require some conversion for calculations
+- 9V99 Stores only digits, the decimal is assumed
+- 5.75 (4 bytes)
+- 575 (3 bytes)
+
+
+# What is COMP-1 and COMP-2?
+- COMP-1 (Single precision floating point)
+   - 4 byte (32 bits)
+   - exponent and mantissa
+   - Faster
+   - Calculations where precision is not critical
+- COMP-2 (Double precision floating ponit)
+   - 8 byte (64 bit) floating point
+   - higher accuracy and precision 
+   - Slower
+   - Applications requiring high-precision
+
+# What is the difference between comp and comp-3?
+Both COMP (BINARY) and COMP-3 (PACKED DECIMAL) are storage formats.
+- COMP
+   - Pure 0 and 1
+   - 2 bytes (1-4 digits). 4 bytes(5-9 digits). 8 bytes(10-18 digits)
+   - Suitable for whole numbers 
+   - High speed integer calculations
+   - Faster
+- COMP-3
+   - Packed decimal (BCD format)
+   - 1 digit = 1/2 byte + 1 sign
+   - Best for decimal numbers
+   - Slower
+   - Precise financial computations
+
