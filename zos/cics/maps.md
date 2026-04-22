@@ -40,15 +40,18 @@ And both are created after the MAP compilation only
 ```
 CEDA DEF MAPset(mapsetname) group(ibmuser)
 ```
+
 3. Install the map CICS 
 
 ```
 CEDA install mapset(helomap) group(ibmuser)
 ```
+
 4. Issue a new copy of the matset after the clean compilation
 ```
 cemt set prog(mapset-name) new
 ```
+
 5. Send the MAPSET
 
 ```

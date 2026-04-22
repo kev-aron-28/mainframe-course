@@ -19,5 +19,4 @@ END-CICS
     5. Issue a new copy in CICS region
         - cemt set prog(sendtxtp) newc and in the results must say NORMAL
     6. Now in CICS region you enter the transction
-
     
