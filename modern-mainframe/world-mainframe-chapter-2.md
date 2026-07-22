@@ -62,4 +62,75 @@ A big reason has lasted so long is that getting rid of it would be incredibly ex
 - Performance
 - Flexible compute
 - Reliability
-- 
+
+
+# The OS
+The OS has seen a myriad of names, including OS/360, MVT, OS/VS2 and OS/390
+The most current version is the z/OS. This 64-bit platform got its start in 2000 and has seen major upgrades, it has maintained backward compatibility 
+as its core still much of the same functionality as the original System/360
+
+While z/OS is similiar to typical OSs, there are still some notable differences. For example, the memory managment does not use the heap or stack
+Instead, z/OS allocates memory to programs based on using large chunks or several of them
+
+- Concurrency: 
+- Spooling:Certain functions, like printing, can cause problems in terms of handling the process. Spooling manages the queue for files
+- POSIX compatiblitiy
+
+Yet z/OS is not the only OS supported on the IBM Z. There are five others.
+
+### z/VSE
+z/Virtual Stroage Extended was part of the original System/360 architecture.
+But the focus for this OS has been for smaller companies. The original name was Disk Operating System (DOS). IBM's DOS was used
+to describe how the system would use the the disk drive to handle processing
+
+
+### z/TPF
+z/Transaction Processing Facility was developed to handle IBM's semi-automatic business research environment (Sabre) airline reservation system,
+which was launched in the early 1960s. The language for the system was based on assembler
+
+### z/VM
+It was introduced in 1972 when IBM developed virtualization. The z/VM allowed for the use of a type 1 hypervisor (bare-metal)
+
+### Linux
+When using linux on an IBM mainframe, there are some factors to note:
+- Access: You do not use a 3270 display terminal. Instead, uses X window terminators or emulators on PCs
+
+### KVM
+Kernel based virtual machine, is an open source virtualization module for the Linux kernel
+
+# Processor architecture
+The processor architecture for the modern IBM z mainfrmame looks similtar to the original develoed in 1964
+
+It has three main components:
+- CPU
+- Main storage
+- Channels
+
+A typical IBM Z system has a multiprocessor as well.
+
+## LPAR
+A logical partition (LPAR) is a form of virutalization that divides the machine into separate mainframes. Its based on a type 1
+hypervisor. The current system allows for up to 40 LPARS
+
+Each LPAr has its own OS and software. Each partition has complete independence. To allow for seamless operation across the machine,
+the z/OS uses cross memory services to handle the tasks for various LPARs
+
+Allocation of resources is flexible. For example, it is possible to use one or more processors per LPAR or to spread them across
+multiple LPARS
+
+Consider that the LPAR technology relies on Processor Resource/System Manager (PR/SM). With this a mainframe has built-in virtualization
+that allows for the efficient use of CPU resources and storage for the LPARs
+
+Another tech to tone is the system complex (sysplex), which allows for the communcation and clustering of LPARs. There are two types of
+sysplex:
+1. Base or mono
+2. Parallel
+
+# Disk
+IBM uses different terminology to describe its mainframe disk drive. The drive is called a Direct Access Storage Device (DASD)
+
+
+# Batch and online transaction processing
+A program is run by using Job Control Language (JCL), and a job is scheduled to process the data
+
+For real time processing we have OLTP (Online transaction processing)
