@@ -28,3 +28,18 @@ Commonly used for the below purposes:
 /*
 ```
 
+# COPYY statement
+COPY statement is used for copying, unloading, or loading operations from one PDS to another. The copy can be full or partial.
+
+``` jcl
+//SYSIN     DD  *
+[label] COPY OUTDD=DDname
+		,INDD=[(]{DDname|(DDname,R) }[,...][)] 
+		[LIST={YES|NO}]
+/*
+```
+
+OUTDD=DDname - Specifies the DDname of the output PDS.
+INDD=[(]{DDname|(DDname,R) }[,...][)] - Specifies the DDname of the input PDS.
+R - Specifies that the members to be copied or loaded from the input PDS will replace any same members on the output PDS.
+LIST={YES|NO} - Specify the altered member names to be listed in the SYSPRINT dataset. When ignored, the default listing option from the EXEC PARM gets applied.
